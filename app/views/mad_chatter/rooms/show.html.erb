@@ -1,0 +1,42 @@
+<div id="room">
+
+<h1 class="name"><%= @room.name %></h1>
+
+<div class="messages">
+  <p id="previous_messages"><%= link_to '^ Show Previous Messages ^', '#' %></p>
+  <% @messages.each do |message| %>
+    <p class="message">
+      <time><%= message.created_at %></time>
+      <span class="author"><%= message.author.username %>:</span>
+      <span class="html"><%= message.html %></span>
+    </p>
+  <% end %>
+</div>
+
+<%= form_for [@room, @room.messages.build], id: 'new_message', html: { class: 'form-search' } do |f| %>
+  <div class="row-fluid">
+    <select id="message_type" style="width:auto">
+      <option>Message</option>
+      <option>Image</option>
+      <option>Code</option>
+      <option>File</option>
+    </select>
+    <%= f.text_field :text, class: 'span9' %>
+    <%= f.submit 'Send', class: 'btn' %>
+
+<!--     <div class="btn-group dropup">
+      <%= f.submit 'Send Message', class: 'btn' %>
+      <button class="btn dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Share Photo</a></li>
+        <li><a href="#">Share Code</a></li>
+        <li><a href="#">Share File</a></li>
+      </ul>
+    </div> -->
+  </div>
+<% end %>
+
+<div class="members"></div>
+</div>

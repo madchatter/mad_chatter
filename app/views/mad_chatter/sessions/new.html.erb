@@ -1,0 +1,16 @@
+<div class="container" style="max-width:300px">
+
+  <%= form_tag mad_chatter.auth_login_path, method: :post, class: 'login-form' do %>
+
+    <h2>Please sign in</h2>
+
+    <% if notice %><div class="alert notice"><%= notice %></div><% end %>
+    <% if alert %><div class="alert alert-danger"><%= alert %></div><% end %>
+
+    <input name="username" type="text" class="input-block-level" placeholder="Username" value="<%= params[:username] %>">
+    <input name="password" type="password" class="input-block-level" placeholder="Password">
+    <button class="btn btn-large btn-primary" type="submit">Sign in</button> or <%= link_to 'Create an Account', mad_chatter.new_user_path %>
+
+  <% end %>
+
+</div>

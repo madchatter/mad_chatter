@@ -1,0 +1,27 @@
+<h1>Listing messages</h1>
+
+<table>
+  <tr>
+    <th>Text</th>
+    <th>Html</th>
+    <th>Author</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @messages.each do |message| %>
+  <tr>
+    <td><%= message.text %></td>
+    <td><%= message.html %></td>
+    <td><%= message.author %></td>
+    <td><%= link_to 'Show', room_message_path(@room, message) %></td>
+    <td><%= link_to 'Edit', edit_room_message_path(@room, message) %></td>
+    <td><%= link_to 'Destroy', room_message_path(@room, message), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Message', new_room_message_path(@room) %>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mad Chatter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag    "mad_chatter/application", :media => "all" %>
+  <%= javascript_include_tag "/mad_chatter/faye/client.js" %>
+  <%= javascript_include_tag "mad_chatter/application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <%= yield %>
+  </div>
+</body>
+</html>

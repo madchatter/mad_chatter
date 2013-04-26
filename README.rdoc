@@ -1,0 +1,7 @@
+= Mad Chatter
+
+Due to a Rails bug, you must add this line to your config/application.rb:
+
+    config.threadsafe!
+
+This project rocks and uses MIT-LICENSE.
