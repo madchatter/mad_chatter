@@ -21,7 +21,7 @@ Mad Chatter uses EventMachine, so make sure you're using an application server, 
     gem 'thin'
     gem 'mad_chatter', github: 'madchatter/mad_chatter'
 
-Make sure you remember to `bundle install`. Next, mount the Mad Chatter Rails Engine in your routes file:
+Make sure you remember to `bundle install`. Next, mount the Mad Chatter Rails Engine in your config/routes.rb:
 
     Rails.application.routes.draw do
       mount MadChatter::Engine => "/chat"
@@ -45,17 +45,17 @@ Here is a list of some of the features that have been implemented and are in the
 * ~~Use Faye for better browser support.~~ (done)
 * ~~Use Backbone.js for better JavaScript organization.~~ (done)
 * ~~Implement user login and registration.~~ (done)
-* Allow user login to use main Rails app user accounts. (todo)
+* Allow user login to use main Rails app user accounts.
 * ~~Ability to create public chat rooms.~~ (done)
 * ~~Ability to send messages to a chat room.~~ (done)
-* Display users currently in a room. (todo)
-* Display status message when user enters or leaves a room. (todo)
-* Ability to share code sample messages. (todo)
-* Ability to share image messages from URL or upload. (todo)
+* Display users currently in a room.
+* Display status message when user enters or leaves a room.
+* Ability to share code sample messages.
+* Ability to share image messages from URL or upload.
 * Ability to create private rooms.
-* Ability to add users to your friends list to know when they are online. (todo)
-* Implement GitHub and Travis CI callbacks. (todo)
-* Ability to create a room that mirrors an IRC channel or Campfire room. (todo)
+* Ability to add users to your friends list to know when they are online.
+* Implement GitHub and Travis CI callbacks.
+* Ability to create a room that mirrors an IRC channel or Campfire room.
 * ...your idea here.
 
 <!--
