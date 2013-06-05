@@ -14,14 +14,28 @@ It has been rewritten as a Rails Engine which can be easily mounted in an existi
 The original purpose of Mad Chatter was to provide a standalone group chat server, so I plan to continue to provide a way to easily deploy Mad Chatter in this manner. However, this method will not be immediately supported.
 
 
-## Requirements
+## Trying it out
 
-Mad Chatter uses EventMachine under the hood, so make sure you're using an application server like thin.
+Mad Chatter uses EventMachine, so make sure you're using an application server, like [Thin](http://code.macournoyer.com/thin/), that uses EventMachine under the hood. Add the following gems to your Gemfile.
+
+    gem 'thin'
+    gem 'mad_chatter', github: 'madchatter/mad_chatter'
+
+Next, mount the Mad Chatter Rails Engine in your routes file:
+
+    Rails.application.routes.draw do
+      mount MadChatter::Engine => "/chat"
+    end
 
 Due to a Rails bug, you must add this line to your config/application.rb:
 
     config.threadsafe!
 
+Now you're ready to try out Mad Chatter. Start up your application and open your browser to the path you specified when mounting the Rails Engine.
+
+    $ bundle exec rails server --port 3000
+    $ open http://localhost:3000/chat
+    
 
 ## Roadmap
 
