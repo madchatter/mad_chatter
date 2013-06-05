@@ -21,7 +21,7 @@ Mad Chatter uses EventMachine, so make sure you're using an application server, 
     gem 'thin'
     gem 'mad_chatter', github: 'madchatter/mad_chatter'
 
-Next, mount the Mad Chatter Rails Engine in your routes file:
+Make sure you remember to `bundle install`. Next, mount the Mad Chatter Rails Engine in your routes file:
 
     Rails.application.routes.draw do
       mount MadChatter::Engine => "/chat"
@@ -35,7 +35,7 @@ Now you're ready to try out Mad Chatter. Start up your application and open your
 
     $ bundle exec rails server --port 3000
     $ open http://localhost:3000/chat
-    
+
 
 ## Roadmap
 
