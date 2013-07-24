@@ -21,13 +21,18 @@ Mad Chatter uses EventMachine, so make sure you're using an application server, 
     gem 'thin'
     gem 'mad_chatter', github: 'madchatter/mad_chatter'
 
-Make sure you remember to `bundle install`. Next, mount the Mad Chatter Rails Engine in your config/routes.rb:
+Next, run these commands in your terminal:
+
+    bundle install
+    rake mad_chatter:install:migrations db:migrate
+
+Next, mount the Mad Chatter Rails Engine in your config/routes.rb:
 
     Rails.application.routes.draw do
       mount MadChatter::Engine => "/chat"
     end
 
-Due to a Rails bug, you must add this line to your config/application.rb:
+Due to a bug in Rails 3, you must add this line to your config/application.rb:
 
     config.threadsafe!
 
