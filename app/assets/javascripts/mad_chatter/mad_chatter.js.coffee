@@ -4,17 +4,8 @@ window.MadChatter =
   Views: {}
   Routers: {}
   Data: {}
-  FayeClient: (
-    Faye.Logging.logLevel = 'debug'
-    scheme = location.protocol
-    host = location.hostname
-    port = if location.port then ":#{location.port}" else ''
-    path = '/mad_chatter/faye'
-    new Faye.Client("#{scheme}//#{host}#{port}#{path}")
-  )
-  initialize: ->
-    new MadChatter.Routers.Room
+  initialize: (@mountPath)->
+    if @mountPath.slice(-1) == '/'
+      @mountPath = @mountPath.slice(0,-1) # remove trailing slash
+    router = new MadChatter.Routers.Room
     Backbone.history.start(pushState: true)
-
-$(document).ready ->
-  MadChatter.initialize()

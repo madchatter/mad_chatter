@@ -7,7 +7,13 @@ module MadChatter
     validates_presence_of :room, :text, :author
 
     def html
-      text if @html.nil?
+      text unless @html
+    end
+
+    def as_json(options={})
+      json = super(options)
+      json[:author_username] = author.username
+      json
     end
 
   end

@@ -7,19 +7,23 @@ class MadChatter.Views.Room extends Backbone.View
     'submit #new_message': 'newMessage'
 
   initialize: ->
+    @listenTo @model.messages, 'add', @addMessage
 
   render: ->
+    this
 
   addMessage: (message)->
     view = new MadChatter.Views.Message(model: message)
     @$el.find('.messages').append view.render().el
 
-  newMessage: (event)->
+  newMessage: (event)=>
     event.preventDefault()
-    $el = $(event.target)
-    $.post $el.attr('action'), $el.serialize(), ->
-      $el.find('input[type=text]').val('')
+    $text_field = $(event.target).find('input[type=text]')
+    message = new MadChatter.Models.Message({text: $text_field.val()}, collection: @model.messages)
+    message.save {}, 
+      error: (message, xhr, options)-> alert 'Sorry, an error occurred while trying to send your message.'
+      success: (message, response, options)-> $text_field.val('')
 
-  fetchPrevious: ->
-    @collection.fetchPrevious (messages)->
-      # display messages
+  fetchPrevious: (event)->
+    event.preventDefault()
+    @model.messages.fetchPrevious()

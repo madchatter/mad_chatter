@@ -1,11 +1,11 @@
-MadChatter::Engine.routes.draw do
+MadChatter::RailsEngine.routes.draw do
 
-  require 'faye'
-  Faye::WebSocket.load_adapter('thin')
-  # mount Faye::RackAdapter.new(:timeout => 25), at: '/faye'
-  mount Faye::RackAdapter.new(:mount => '/faye', :timeout => 25) => '/mad_chatter'
+  
+  mount MadChatter::Protocols::SSE => '/protocols/sse', as: :sse_protocol
 
-  resources :users
+  # HTTP protocol:
+
+  resources :users # provides ability to sign-up as a new user
 
   scope 'auth', as: :auth do
     get 'login' => 'sessions#new', as: :login

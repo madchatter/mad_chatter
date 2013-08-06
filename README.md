@@ -1,6 +1,6 @@
 # Mad Chatter
 
-Mad Chatter is a fun, easy to customize, web-based chat server. It's written in Ruby and utilizes HTML 5 Web Sockets for fast communication.
+Mad Chatter is a fun, easy to customize, group chat server. It's written in Ruby and utilizes HTML 5 Server Sent Events for fast communication.
 
 The goal of Mad Chatter is to basically become an open-source version of [Campfire](http://campfirenow.com/), [HipChat](https://www.hipchat.com), or [FlowDock](https://www.flowdock.com)...or at least use those as inspiration.
 
@@ -11,12 +11,12 @@ Mad Chatter is undergoing a complete rewrite. The original application can be fo
 
 It has been rewritten as a Rails Engine which can be easily mounted in an existing Rails application. That way, users of your application can participate in group chat while using the same user account as your application. However, sharing user accounts has not yet been implemented.
 
-The original purpose of Mad Chatter was to provide a standalone group chat server, so I plan to continue to provide a way to easily deploy Mad Chatter in this manner. However, this method will not be immediately supported.
+The original purpose of Mad Chatter was to provide a standalone, group chat server, so I plan to continue to provide a way to easily deploy Mad Chatter in this manner. However, easy integration in a Rails app is the highest priority.
 
 
 ## Trying it out
 
-Mad Chatter uses EventMachine, so make sure you're using an application server, like [Thin](http://code.macournoyer.com/thin/), that uses EventMachine under the hood. Add the following gems to your Gemfile.
+Since Mad Chatter makes use of HTTP streaming, you will need to use an application server that supports streaming, such as [Thin](http://code.macournoyer.com/thin/), [Unicorn](http://unicorn.bogomips.org), [Rainbows!](http://rainbows.rubyforge.org), or [Puma](http://puma.io). Add the following gems to your Gemfile:
 
     gem 'thin'
     gem 'mad_chatter', github: 'madchatter/mad_chatter'
@@ -24,7 +24,8 @@ Mad Chatter uses EventMachine, so make sure you're using an application server, 
 Next, run these commands in your terminal:
 
     bundle install
-    rake mad_chatter:install:migrations db:migrate
+    bundle exec rake mad_chatter:install:migrations
+    bundle exec rake db:migrate
 
 Next, mount the Mad Chatter Rails Engine in your config/routes.rb:
 
@@ -46,13 +47,19 @@ Now you're ready to try out Mad Chatter. Start up your application and open your
 
 Here is a list of some of the features that have been implemented and are in the pipeline:
 
-* ~~Create a Rails Engine.~~ (done)
-* ~~Use Faye for better browser support.~~ (done)
-* ~~Use Backbone.js for better JavaScript organization.~~ (done)
-* ~~Implement user login and registration.~~ (done)
+### Done
+
+* ~~Create a Rails Engine.~~
+* ~~Use Server Sent Events instead of Web Sockets.~~
+* ~~Use Backbone.js for better JavaScript organization.~~
+* ~~Implement user login and registration.~~
+* ~~Ability to create public chat rooms.~~
+* ~~Ability to send messages to a chat room.~~
+
+### Todo
+
+* Add SSE polyfill to support IE.
 * Allow user login to use main Rails app user accounts.
-* ~~Ability to create public chat rooms.~~ (done)
-* ~~Ability to send messages to a chat room.~~ (done)
 * Display users currently in a room.
 * Display status message when user enters or leaves a room.
 * Ability to share code sample messages.
@@ -61,9 +68,11 @@ Here is a list of some of the features that have been implemented and are in the
 * Ability to add users to your friends list to know when they are online.
 * Implement GitHub and Travis CI callbacks.
 * Ability to create a room that mirrors an IRC channel or Campfire room.
+* Ability to consume a Mad Chatter messages from an IRC client instead of SSE.
 * ...your idea here.
 
-<!--
+<!-- OLD README
+    
 ## Getting Started
 
 Since Mad Chatter is written in Ruby, you'll need to install Ruby in order to continue. We have a wiki page to help you with that:

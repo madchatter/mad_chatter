@@ -3,8 +3,7 @@
 <head>
   <title>Mad Chatter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= stylesheet_link_tag    "mad_chatter/application", :media => "all" %>
-  <%= javascript_include_tag "/mad_chatter/faye/client.js" %>
+  <%= stylesheet_link_tag "mad_chatter/application", :media => "all" %>
   <%= javascript_include_tag "mad_chatter/application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -12,5 +11,6 @@
   <div class="container">
     <%= yield %>
   </div>
+  <%= javascript_tag "MadChatter.initialize('#{mad_chatter.root_path}')" %>
 </body>
 </html>
