@@ -8,4 +8,4 @@ window.MadChatter =
     if @mountPath.slice(-1) == '/'
       @mountPath = @mountPath.slice(0,-1) # remove trailing slash
     router = new MadChatter.Routers.Room
-    Backbone.history.start(pushState: true)
+    Backbone.history.start(pushState: true, root: @mountPath)

@@ -37,13 +37,13 @@ module MadChatter
     # end
 
     def create
-      @message = current_room.messages.new(params[:message])
+      @message = current_room.messages.new(message_params[:message])
       @message.author = current_user
 
       respond_to do |format|
         if @message.save
           $redis.publish "madchatter:rooms:#{current_room.id}", @message.to_json
-          format.html { redirect_to @message, notice: 'Message was successfully created.' }
+          format.html { render :show, notice: 'Message was successfully created.' }
           format.json { render json: @message, status: :created }
         else
           format.html { render action: "new" }
@@ -76,8 +76,15 @@ module MadChatter
     #   end
     # end
 
+  private
+
     def current_room
       @room ||= Room.find(params[:room_id])
     end
+
+    def message_params
+      params.permit(message: [:text, :html])
+    end
+
   end
 end

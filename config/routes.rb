@@ -10,7 +10,7 @@ MadChatter::RailsEngine.routes.draw do
   scope 'auth', as: :auth do
     get 'login' => 'sessions#new', as: :login
     post 'login' => 'sessions#create'
-    match 'logout' => 'sessions#destroy'
+    get 'logout' => 'sessions#destroy'
   end
 
   resources :rooms do

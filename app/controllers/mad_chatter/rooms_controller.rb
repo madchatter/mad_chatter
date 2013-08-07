@@ -47,7 +47,7 @@ module MadChatter
     # POST /rooms
     # POST /rooms.json
     def create
-      @room = Room.new(params[:room])
+      @room = Room.new(room_params[:room])
   
       respond_to do |format|
         if @room.save
@@ -66,7 +66,7 @@ module MadChatter
       @room = Room.find(params[:id])
   
       respond_to do |format|
-        if @room.update_attributes(params[:room])
+        if @room.update_attributes(room_params[:room])
           format.html { redirect_to @room, notice: 'Room was successfully updated.' }
           format.json { head :no_content }
         else
@@ -87,5 +87,12 @@ module MadChatter
         format.json { head :no_content }
       end
     end
+
+  private
+
+    def room_params
+      params.permit(room: [:name])
+    end
+
   end
 end

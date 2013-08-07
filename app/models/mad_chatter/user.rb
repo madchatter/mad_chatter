@@ -2,7 +2,11 @@ require 'bcrypt'
 
 module MadChatter
   class User < ActiveRecord::Base
-    attr_accessible :first_name, :last_name, :username, :password, :password_confirmation
+
+    if Rails::VERSION::MAJOR == 3
+      attr_accessible :first_name, :last_name, :username, :password, :password_confirmation
+    end
+
     validates :username, presence: true, uniqueness: true
     validates :password, presence: true, confirmation: true
 

@@ -21,6 +21,8 @@ Since Mad Chatter makes use of HTTP streaming, you will need to use an applicati
     gem 'thin'
     gem 'mad_chatter', github: 'madchatter/mad_chatter'
 
+If you are using Rails 3, you will also need to add the `strong_parameters` gem.
+
 Next, run these commands in your terminal:
 
     bundle install
@@ -30,12 +32,8 @@ Next, run these commands in your terminal:
 Next, mount the Mad Chatter Rails Engine in your config/routes.rb:
 
     Rails.application.routes.draw do
-      mount MadChatter::Engine => "/chat"
+      mount MadChatter::RailsEngine => "/chat"
     end
-
-Due to a bug in Rails 3, you must add this line to your config/application.rb:
-
-    config.threadsafe!
 
 Now you're ready to try out Mad Chatter. Start up your application and open your browser to the path you specified when mounting the Rails Engine.
 

@@ -3,10 +3,10 @@
 <h1 class="name"><%= @room.name %></h1>
 
 <div class="messages">
-  <p id="previous_messages"><%= link_to '^ Show Previous Messages ^', '#' %></p>
+  <!-- TODO: <p id="previous_messages"><%= link_to '^ Show Previous Messages ^', '#' %></p> -->
   <% @messages.each do |message| %>
     <p class="message">
-      <time><%= message.created_at %></time>
+      <time><%= message.created_at.strftime('%b %e, %l:%M %p') %></time>
       <span class="author"><%= message.author.username %>:</span>
       <span class="html"><%= message.html %></span>
     </p>

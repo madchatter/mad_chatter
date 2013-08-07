@@ -1,3 +1,5 @@
+require 'strong_parameters' unless Rails::VERSION::MAJOR == 4
+
 module MadChatter
   class RailsEngine < ::Rails::Engine
     isolate_namespace MadChatter

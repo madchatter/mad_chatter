@@ -13,7 +13,7 @@ module MadChatter
   
     def create
       respond_to do |format|
-        if user = User.authenticate(params[:username], params[:password])
+        if user = User.authenticate(user_params[:username], user_params[:password])
           session[:user_id] = user.id
           format.html { redirect_to mad_chatter.root_path }
           format.json { render :nothing, status: :ok, location: mad_chatter.root_path }
@@ -29,5 +29,12 @@ module MadChatter
       session[:user_id] = nil
       redirect_to mad_chatter.auth_login_path
     end
+
+  private
+
+    def user_params
+      params.permit(:username, :password)
+    end
+
   end
 end

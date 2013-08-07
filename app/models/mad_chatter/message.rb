@@ -1,7 +1,11 @@
 module MadChatter
   class Message < ActiveRecord::Base
+
+    if Rails::VERSION::MAJOR == 3
+      attr_accessible :html, :text
+    end
+    
     belongs_to :room
-    attr_accessible :html, :text
     belongs_to :author, class_name: 'User'
 
     validates_presence_of :room, :text, :author
