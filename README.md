@@ -56,6 +56,8 @@ Here is a list of some of the features that have been implemented and are in the
 
 ### Todo
 
+Want to help? Find a story to implement: [![Stories in Ready](https://badge.waffle.io/madchatter/mad_chatter.png)](http://waffle.io/madchatter/mad_chatter)
+
 * Add SSE polyfill to support IE.
 * Allow user login to use main Rails app user accounts.
 * Display users currently in a room.
