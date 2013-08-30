@@ -1,5 +1,7 @@
 class MadChatter.Views.Message extends Backbone.View
 
+  template: JST['mad_chatter/message']
+
   render: ->
-    @$el.html "<p><strong>#{@model.get('author_username')}</strong>: #{@model.get('html')}</p>"
+    @$el.html @template(message: @model.toJSON())
     this

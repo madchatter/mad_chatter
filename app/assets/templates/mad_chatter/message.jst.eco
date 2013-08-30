@@ -1,0 +1,5 @@
+<p class="message">
+  <time><%= @message.created_at %></time>
+  <span class="author"><%= @message.author_username %>:</span>
+  <span class="html"><%= @message.html %></span>
+</p>
