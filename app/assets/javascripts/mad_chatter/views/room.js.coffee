@@ -22,7 +22,9 @@ class MadChatter.Views.Room extends Backbone.View
     message = new MadChatter.Models.Message({text: $text_field.val()}, collection: @model.messages)
     message.save {}, 
       error: (message, xhr, options)-> alert 'Sorry, an error occurred while trying to send your message.'
-      success: (message, response, options)-> $text_field.val('')
+      success: (message, response, options) =>
+        @addMessage message
+        $text_field.val('')
 
   fetchPrevious: (event)->
     event.preventDefault()
