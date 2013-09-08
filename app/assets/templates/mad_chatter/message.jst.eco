@@ -1,5 +1,5 @@
 <p class="message">
-  <time>#{moment(<%= @message.created_at %>,"YYYY-MM-DD'T'HH:mm:ss.SSSZ").format('MMM D, h:mm A')}</time>
+  <time><%= @message.created_at.strftime("%b %d, %I:%M%p") %></time>
   <span class="author"><%= @message.author_username %>:</span>
   <span class="html"><%= @message.html %></span>
 </p>
