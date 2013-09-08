@@ -42,7 +42,6 @@ module MadChatter
 
       respond_to do |format|
         if @message.save
-          $redis.publish "madchatter:rooms:#{current_room.id}", @message.to_json
           format.html { render :show, notice: 'Message was successfully created.' }
           format.json { render json: @message, status: :created }
         else

@@ -1,16 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mad Chatter</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VSns</title>
   <%= stylesheet_link_tag "mad_chatter/application", :media => "all" %>
   <%= javascript_include_tag "mad_chatter/application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container">
-    <%= yield %>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="/">De.Chemist</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li id="home">
+              <%= link_to 'Home', '/' %>
+            </li>
+            <li id="post" >
+              <%= link_to 'Posts', '/posts' %>
+            </li>
+            <li id="chat"><a href="/chat">Chatting Room</a></li>
+          </ul>
+          <ul class="nav pull-right">
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
   </div>
+
+  <div id="content" class="container">
+    <div class="row-fluid">
+      <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-error"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+      
+    </div><!--/row-->
+  </div><!-- /container -->
+  <script type="text/javascript">
+    String.prototype.startsWith = function(prefix) {
+      return this.indexOf(prefix) === 0;
+    };
+    var parser = document.createElement('a');
+    parser.href = document.URL;
+    if(parser.pathname.startsWith('/posts')) {
+      $(".navbar .nav li#post").addClass('active');
+    } else if(parser.pathname.startsWith('/chat')) {
+      $(".navbar .nav li#chat").addClass('active');
+    } else {
+      $(".navbar .nav li#home").addClass('active');
+    }
+  </script>
   <%= javascript_tag "MadChatter.initialize('#{mad_chatter.root_path}')" %>
 </body>
 </html>
+
+

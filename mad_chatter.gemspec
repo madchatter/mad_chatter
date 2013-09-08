@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
 
   # UI and styles
   s.add_dependency "jquery-rails"
+  s.add_dependency "momentjs-rails"
   s.add_dependency "sass-rails"
   s.add_dependency "backbone-on-rails"
   s.add_dependency "bootstrap-sass"

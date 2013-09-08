@@ -1,0 +1,5 @@
+<p class="message">
+  <time><%= message.created_at.strftime('%b %e, %l:%M %p') %></time>
+  <span class="author"><%= message.author.username %>:</span>
+  <span class="html"><%= message.html %></span>
+</p>

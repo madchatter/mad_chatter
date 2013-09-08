@@ -5,11 +5,7 @@
 <div class="messages">
   <!-- TODO: <p id="previous_messages"><%= link_to '^ Show Previous Messages ^', '#' %></p> -->
   <% @messages.each do |message| %>
-    <p class="message">
-      <time><%= message.created_at.strftime('%b %e, %l:%M %p') %></time>
-      <span class="author"><%= message.author.username %>:</span>
-      <span class="html"><%= message.html %></span>
-    </p>
+    <%= render 'mad_chatter/messages/message', message: message %>
   <% end %>
 </div>
 

@@ -1,6 +1,7 @@
 %w{
   redis
   jquery-rails
+  momentjs-rails
   backbone-on-rails
   bootstrap-sass
   mad_chatter/protocols/sse
